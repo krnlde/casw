@@ -31,7 +31,7 @@ const Throttle = require('stream-throttle').Throttle;
 const rateLimit = 3 * 1024 * 1024; // bps == 3 MB/s
 const baseUrl   = './www';
 
-http.createServer((request, response) => {
+function handleRequest(request, response) => {
   const url = path.join(baseUrl, path.normalize(decodeURIComponent(request.url)));
 
   console.log(`#${cluster.worker.id}: HTTP/${request.httpVersion} ${request.method} ${request.url}`);
@@ -72,12 +72,11 @@ http.createServer((request, response) => {
       const [partialStart, partialEnd] = range.replace(/bytes=/, '').split('-');
       const start = parseInt(partialStart, 10);
       const end = partialEnd ? parseInt(partialEnd, 10) : stat.size - 1;
-      const chunkSize = (end - start) + 1;
 
       partial = {
         start,
         end,
-        chunkSize,
+        chunkSize: (end - start) + 1,
       };
 
       data = fs.createReadStream(url, partial);
@@ -105,4 +104,8 @@ http.createServer((request, response) => {
     }
     data.pipe(response);
   });
-}).listen(8000, () => console.log(`${cluster.worker.id} is ready (pid: ${process.pid})`));
+}
+
+http
+  .createServer(handleRequest)
+  .listen(8000, () => console.log(`${cluster.worker.id} is ready (pid: ${process.pid})`));
