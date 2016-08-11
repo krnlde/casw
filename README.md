@@ -8,7 +8,7 @@ A functioning node.js v6.3.1+ and the ability to start a webserver on port 8000 
 
 ## Install
 
-1. `npm install`
+1. Run `npm install`
 2. Put some files in the `./www` folder
-3. `node index.js`
+3. Run `node index.js`
 4. Open your webbrowser and surf `http://localhost:8000/YOUR_FILE`
