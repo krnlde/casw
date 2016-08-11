@@ -72,12 +72,12 @@ http.createServer((request, response) => {
       const [partialStart, partialEnd] = range.replace(/bytes=/, '').split('-');
       const start = parseInt(partialStart, 10);
       const end = partialEnd ? parseInt(partialEnd, 10) : stat.size - 1;
-      const chunksize = (end - start) + 1;
+      const chunkSize = (end - start) + 1;
 
       partial = {
         start,
         end,
-        chunksize,
+        chunkSize,
       };
 
       data = fs.createReadStream(url, partial);
@@ -85,10 +85,10 @@ http.createServer((request, response) => {
       data = fs.createReadStream(url);
     }
 
-    if (!compressionStream) {
-      response.setHeader('Content-Length', partial ? partial.chunksize : stat.size);
-    } else {
+    if (compressionStream) {
       data = data.pipe(compressionStream);
+    } else {
+      response.setHeader('Content-Length', partial ? partial.chunkSize : stat.size);
     }
 
     if (rateLimit > 0) {
