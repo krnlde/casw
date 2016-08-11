@@ -4,7 +4,7 @@ This repository is my proof-of-concept for my very bachelor's thesis.
 
 ## Prerequisits
 
-An installed Node.js v6.3.1+ and the right to start a webserver (port 8000) on your machine.
+An functioning node.js v6.3.1+ and the ability to start a webserver on port 8000 on the target machine.
 
 ## Install
 
