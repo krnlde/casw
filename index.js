@@ -1,11 +1,12 @@
-const cluster  = require('cluster');
-const numCPUs  = require('os').cpus().length;
+const cluster = require('cluster');
+const numCPUs = require('os').cpus().length;
 
 ///// Cluster Code /////
 
 if (cluster.isMaster) {
   console.log(`Master here (pid: ${process.pid}):`);
   console.log(`Based on your current hardware ${numCPUs} workers will be started...`);
+
   for (let i = 0; i < numCPUs; i++) {
     cluster.fork();
   }
