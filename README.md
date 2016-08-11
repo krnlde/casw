@@ -1,6 +1,6 @@
 # Clustered asynchronous streaming webserver (PoC)
 
-This repository is my proof-of-concept for my very bachelor's thesis. It utilizes all your available hardware cores by forking new processes und enables true asynchronous streaming for all static files contained in `./www`. Meaning you can scrub through video and audio (all binaries and even large texts if you need to) without having to actually download the whole file.
+This repository is my proof-of-concept for my very bachelor's thesis. It utilizes all your available hardware cores by forking new processes accordingly und enables true asynchronous streaming for all static files contained in `./www`. Meaning you can scrub through video and audio (all binaries and even large texts if you need to) without having to actually download the whole file.
 
 Oh yeah, and all that in under 100 SLOC.
 
