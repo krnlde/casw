@@ -9,6 +9,13 @@ if (cluster.isMaster) {
   for (let i = 0; i < numCPUs; i++) {
     cluster.fork();
   }
+
+  cluster
+    .on('SIGTERM', () => cluster.off('exit'))
+    .on('exit', (deadWorker) => {
+      console.warn(`${deadWorker.process.pid} died, forking new process...`);
+      cluster.fork();
+    });
   return;
 }
 
