@@ -98,7 +98,10 @@ http.createServer((request, response) => {
     if (!partial) {
       response.writeHead(200);
     } else {
-      response.writeHead(206, {'Content-Range': 'bytes ' + partial.start + '-' + partial.end + '/' + stat.size, 'Accept-Ranges': 'bytes'});
+      response.writeHead(206, {
+        'Content-Range': `bytes ${partial.start}-${partial.end}/${stat.size}`,
+        'Accept-Ranges': 'bytes',
+      });
     }
     data.pipe(response);
   });
