@@ -31,7 +31,7 @@ const Throttle = require('stream-throttle').Throttle;
 const rateLimit = 3 * 1024 * 1024; // bps == 3 MB/s
 const baseUrl   = './www';
 
-function handleRequest(request, response) => {
+function handleRequest(request, response) {
   const url = path.join(baseUrl, path.normalize(decodeURIComponent(request.url)));
 
   console.log(`#${cluster.worker.id}: HTTP/${request.httpVersion} ${request.method} ${request.url}`);
