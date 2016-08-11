@@ -4,7 +4,8 @@ const numCPUs  = require('os').cpus().length;
 ///// Cluster Code /////
 
 if (cluster.isMaster) {
-  console.log(`Based on your current hardware ${numCPUs} workers will be started...`)
+  console.log(`Master here (pid: ${process.pid}):`);
+  console.log(`Based on your current hardware ${numCPUs} workers will be started...`);
   for (let i = 0; i < numCPUs; i++) {
     cluster.fork();
   }
@@ -16,8 +17,8 @@ if (cluster.isMaster) {
 const path     = require('path');
 const fs       = require('fs');
 const http     = require('http');
-const mime     = require('mime');
 const zlib     = require('zlib');
+const mime     = require('mime');
 const Throttle = require('stream-throttle').Throttle;
 
 const rateLimit = 3 * 1024 * 1024; // bps == 3 MB/s
