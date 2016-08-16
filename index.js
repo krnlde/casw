@@ -1,6 +1,7 @@
+'use strict';
 const cluster = require('cluster');
 const numCPUs = require('os').cpus().length;
-
+const pjson   = require('./package.json');
 ///// Cluster Code /////
 
 if (cluster.isMaster) {
@@ -29,13 +30,15 @@ const zlib     = require('zlib');
 const mime     = require('mime');
 const Throttle = require('stream-throttle').Throttle;
 
-const rateLimit = 3 * 1024 * 1024; // bps == 3 MB/s
+const rateLimit = 0; //3 * 1024 * 1024; // bps == 3 MB/s
 const baseUrl   = './www';
 
 function handleRequest(request, response) {
   const url = path.join(baseUrl, path.normalize(decodeURIComponent(request.url)));
 
-  console.log(`#${cluster.worker.id}: HTTP/${request.httpVersion} ${request.method} ${request.url}`);
+  //console.log(`#${cluster.worker.id}: HTTP/${request.httpVersion} ${request.method} ${request.url}`);
+
+  response.setHeader('Server', `${pjson.name}/${pjson.version}`);
 
   fs.stat(url, (error, stat) => {
     if (error || stat.isDirectory()) {
