@@ -6,7 +6,7 @@ const pjson   = require('./package.json');
 
 if (cluster.isMaster) {
   console.log(`Master here (pid: ${process.pid}):`);
-  console.log(`Based on your current hardware ${numCPUs} workers will be started...`);
+  console.log(`Based on your current hardware, ${numCPUs} workers will be started...`);
 
   for (let i = 0; i < numCPUs; i++) {
     cluster.fork();
