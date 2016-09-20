@@ -18,5 +18,5 @@ A functioning node.js v6.6.0+ and the ability to start a webserver on port 8000 
 ## Improvements
 
 1. Cache files (via a shared-cache for all processes) with a certain lifetime so you don't need to access the fs everytime
-2. Failsafe to respawn killed processes
+2. ~~Failsafe to respawn killed processes~~
 3. Zero-downtime re-deployment (probably better done with PM2)
