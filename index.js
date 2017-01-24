@@ -1,7 +1,6 @@
 'use strict';
 const cluster = require('cluster');
 const numCPUs = require('os').cpus().length;
-const pjson   = require('./package.json');
 ///// Cluster Code /////
 
 if (cluster.isMaster) {
@@ -23,10 +22,13 @@ if (cluster.isMaster) {
 
 ///// Worker Code /////
 
+const pjson   = require('./package.json');
+
 const path     = require('path');
 const fs       = require('fs');
 const http     = require('http');
 const zlib     = require('zlib');
+
 const mime     = require('mime');
 const Throttle = require('stream-throttle').Throttle;
 
