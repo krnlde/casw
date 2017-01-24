@@ -4,6 +4,7 @@
   "description": "This repository is my proof-of-concept for my very Bachelor's Thesis.",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
