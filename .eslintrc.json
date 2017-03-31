@@ -5,6 +5,7 @@
     },
     "extends": "eslint:recommended",
     "rules": {
+        "comma-dangle": ["off"],
         "indent": [
             "error",
             2
