@@ -1,0 +1,1 @@
+I in no way claim that this code is "production-ready". This is just a proof-of-concept for how streaming services could work. Use with care and at your own risk.
