@@ -2,10 +2,13 @@
 const cluster = require('cluster');
 const numCPUs = require('os').cpus().length;
 ///// Cluster Code /////
+///
+const PORT = 8000;
 
 if (cluster.isMaster) {
   console.log(`Master here (pid: ${process.pid}):`);
   console.log(`Based on your current hardware, ${numCPUs} workers will be started...`);
+  console.log(`Listening on 0.0.0.0:${PORT}`);
 
   for (let i = 0; i < numCPUs; i++) {
     cluster.fork();
@@ -38,7 +41,7 @@ const baseUrl   = './www';
 function handleRequest(request, response) {
   const url = path.join(baseUrl, path.normalize(decodeURIComponent(request.url)));
 
-  //console.log(`#${cluster.worker.id}: HTTP/${request.httpVersion} ${request.method} ${request.url}`);
+  console.log(`#${cluster.worker.id}: HTTP/${request.httpVersion} ${request.method} ${request.url}`);
 
   response.setHeader('Server', `${pjson.name}/${pjson.version}`);
 
@@ -114,4 +117,4 @@ function handleRequest(request, response) {
 
 http
   .createServer(handleRequest)
-  .listen(8000, () => console.log(`${cluster.worker.id} is ready (pid: ${process.pid})`));
+  .listen(PORT, () => console.log(`${cluster.worker.id} is ready (pid: ${process.pid})`));
