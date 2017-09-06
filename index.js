@@ -2,7 +2,7 @@
 const cluster = require('cluster');
 const numCPUs = require('os').cpus().length;
 ///// Cluster Code /////
-///
+
 const PORT = 8000;
 
 if (cluster.isMaster) {
@@ -111,6 +111,7 @@ function handleRequest(request, response) {
         'Accept-Ranges': 'bytes',
       });
     }
+
     data.pipe(response);
   });
 }
