@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/krnlde/casw#readme",
   "dependencies": {
-    "mime": "^1.4.0",
+    "mime": "^1.4.1",
     "stream-throttle": "^0.1.3"
   }
 }
